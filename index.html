@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelvin Store</title>
+<style>
+body { margin:0; background:#000; color:#fff; font-family:Arial; }
+header { padding:20px; text-align:center; font-size:30px; background:#111; }
+.container { max-width:900px; margin:auto; padding:20px; }
+.item { background:#111; padding:15px; border-radius:10px; margin-bottom:20px; border:1px solid #333; }
+.item img { width:100%; height:250px; background:#222; border-radius:10px; object-fit:cover; }
+.item-name { font-size:22px; margin-top:10px; font-weight:bold; }
+.item-price { font-size:18px; margin-top:5px; color:#0f0; }
+.buy-btn { margin-top:15px; width:100%; padding:15px; background:#0f0; color:#000; font-size:20px;
+           border:none; border-radius:8px; cursor:pointer; font-weight:bold; }
+.popup-bg { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8);
+            display:none; justify-content:center; align-items:center; }
+.popup { background:#111; padding:25px; border-radius:12px; width:90%; max-width:400px; text-align:center; border:1px solid #333; }
+input { width:100%; padding:12px; border-radius:8px; border:none; margin-top:10px; font-size:16px; }
+.send-btn, .insta-btn { margin-top:15px; width:100%; padding:12px; border:none; border-radius:8px;
+           cursor:pointer; font-weight:bold; font-size:18px; }
+.send-btn { background:#0f0; color:#000; }
+.insta-btn { background:#3897f0; color:#fff; }
+</style>
+</head>
+<body>
+
+<header>Kelvin.Store</header>
+
+<div class="container">
+
+<div class="item">
+  <img src="images/produto1.png">
+  <div class="item-name">mieteteira bicicleteira</div>
+  <div class="item-price">R$ 8,00</div>
+  <button class="buy-btn" onclick="openPopup('mieteteira bicicleteira')">Comprar Agora</button>
+</div>
+
+<div class="item">
+  <img src="images/produto2.png">
+  <div class="item-name">esok sekola</div>
+  <div class="item-price">R$ 30,00</div>
+  <button class="buy-btn" onclick="openPopup('esok sekola')">Comprar Agora</button>
+</div>
+
+<div class="item">
+  <img src="images/produto3.png">
+  <div class="item-name">Los spoky conbinaçonas</div>
+  <div class="item-price">R$ 32,00</div>
+  <button class="buy-btn" onclick="openPopup('Los spoky conbinaçonas')">Comprar Agora</button>
+</div>
+
+</div>
+
+<div class="popup-bg" id="popup-bg">
+  <div class="popup" id="popup"></div>
+</div>
+
+<script>
+let selectedProduct = "";
+function openPopup(product) {
+  selectedProduct = product;
+  document.getElementById("popup-bg").style.display = "flex";
+  document.getElementById("popup").innerHTML = `
+    <h2>Você escolheu:</h2>
+    <p><b>${product}</b></p>
+    <h3>Digite seu nome:</h3>
+    <input id='username' type='text' placeholder='Seu nome...'>
+    <button class='send-btn' onclick='askName()'>Enviar</button>
+  `;
+}
+function askName() {
+  let name = document.getElementById("username").value.trim();
+  if(!name){ alert('Digite seu nome'); return; }
+  document.getElementById("popup").innerHTML = `
+    <h2>Obrigado, ${name}!</h2>
+    <p>Produto: <b>${selectedProduct}</b></p>
+    <button class='insta-btn' onclick="window.location.href='https://instagram.com/kelvin_store.oficial'">Ir até lá</button>
+  `;
+}
+</script>
+
+</body>
+</html>
